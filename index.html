@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FM Graphics Collection by OKV</title>
+  <title>FM Graphics Collection by Kirill</title>
   <style>
     :root {
       --primary-color: #2c3e50;
@@ -171,17 +171,19 @@
       max-height: 5000px;
     }
 
-    .upd-marker {
-      color: #28a745;
-      font-weight: bold;
-      margin-right: 10px;
-      display: inline-block;
-      transform: translateX(-120%);
-      position: absolute;
-    }
-
     tr.upd td:first-child {
       position: relative;
+      padding-left: 60px;
+    }
+
+    .upd-marker {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #28a745;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
     @media (max-width: 768px) {
@@ -211,8 +213,13 @@
         gap: 10px;
       }
 
+      tr.upd td:first-child {
+        padding-left: 50px;
+      }
+      
       .upd-marker {
-        transform: translateX(-110%);
+        left: 10px;
+        font-size: 14px;
       }
     }
 
