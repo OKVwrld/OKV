@@ -2,366 +2,897 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Лучшее от OKV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM Graphics Collection by Kirill</title>
   <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-light: #ffffff;
+      --text-light: #333333;
+      --background-dark: #121212;
+      --text-dark: #e0e0e0;
+      --transition-speed: 0.3s;
+    }
+
     body {
-      font-family: "Times New Roman", serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
-      margin: 20px;
+      margin: 0;
+      padding: 20px;
+      scroll-behavior: smooth;
+      background-color: var(--background-light);
+      color: var(--text-light);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
     }
-    section {
-      margin: 20px 0;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    h2 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
+
+    .header-controls {
       display: flex;
-      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    section {
+      margin: 30px 0;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all var(--transition-speed);
+    }
+
+    h2 {
+      margin: 0 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+      display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.5rem;
     }
+
     button {
-      padding: 3px 8px;
-      font-size: 0.9em;
-      margin-left: 10px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
+      transition: all var(--transition-speed);
+      background-color: var(--secondary-color);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
+
+    button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 10px 0;
+      margin: 20px 0;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
+
     th, td {
-      padding: 8px;
+      padding: 12px 15px;
       text-align: left;
+      border-bottom: 1px solid #ddd;
     }
+
     th {
-      background-color: #f9f9f9;
+      background-color: var(--secondary-color);
+      color: white;
+      font-weight: 600;
     }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     .center-bold {
       text-align: center;
-      font-weight: bold;
+      font-weight: 700;
+      margin: 20px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    #scrollTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 18px;
+      font-size: 16px;
+      background-color: var(--secondary-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-speed);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #scrollTop.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .toggle-content {
+      overflow: hidden;
+      transition: max-height var(--transition-speed) ease-out;
+      max-height: 0;
+    }
+
+    .toggle-content.open {
+      max-height: 5000px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      section {
+        padding: 15px;
+      }
+      
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      
+      .header-controls {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      
+      h2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+    .dark-theme {
+      background-color: var(--background-dark);
+      color: var(--text-dark);
+    }
+
+    .dark-theme section {
+      background: rgba(18, 18, 18, 0.95);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark-theme h2 {
+      border-color: #333;
+    }
+
+    .dark-theme table {
+      background: #1e1e1e;
+      color: var(--text-dark);
+    }
+
+    .dark-theme th {
+      background-color: #2c2c2c;
+    }
+
+    .dark-theme tr:hover {
+      background-color: #2a2a2a;
+    }
+
+    .dark-theme .center-bold {
+      background: #2c2c2c;
     }
   </style>
 </head>
 <body>
-  <section id="about">
-    <h2><strong>Об Авторе</strong></h2>
-    <div>
-      <p>Всем привет! Я Кирилл и я делаю формы для команд из России в стиле FC'12, а также занимаюсь ресерчем низов России)000))0000</p>
-      <p style="text-align: center; font-weight: bold;">
-        Не забудь подписаться на мой канал <a href="https://t.me/kitsforfmbyOKV" target="_blank">t.me/kitsforfmbyOKV</a>
-      </p>
-      <p>И если хочешь отблагодарить меня, то 4276 4000 6675 4566</p>
+  <div class="container">
+    <div class="header-controls">
+      <div id="langSwitcher">
+        <button onclick="switchLanguage('ru')">Русский</button>
+        <button onclick="switchLanguage('en')">English</button>
+      </div>
+      <div id="themeSwitcher">
+        <button id="themeToggleBtn" onclick="toggleTheme()">Темная тема</button>
+      </div>
     </div>
-  </section>
-  <section id="faces">
-    <h2>
-      Лица
-      <button id="toggleFaces" onclick="toggleSection('facesContent','toggleFaces')">Показать список</button>
-    </h2>
-    <div id="facesContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Стиль</th>
-            <th>Версия</th>
-            <th>Дата выхода</th>
-            <th>Размер файла</th>
-            <th>Количество изображений</th>
-            <th>Ссылка на загрузку</th>
-            <th>Оригинал поста</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Cut-Out</td>
-            <td>2025.02</td>
-            <td>7 января 2025</td>
-            <td>15 Гб</td>
-            <td>485,166</td>
-            <td><a href="https://t.me/OKVFMchat/943" target="_blank">Скачать</a></td>
-            <td rowspan="2">
-              <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank">
-                <button>Перейти</button>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>Cut-Out</td>
-            <td>2025.03</td>
-            <td>11 февраля 2025</td>
-            <td>236 Мб</td>
-            <td>8,074</td>
-            <td><a href="https://t.me/OKVFMchat/965" target="_blank">Скачать</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section id="logos">
-    <h2>
-      Логотипы
-      <button id="toggleLogos" onclick="toggleSection('logosContent','toggleLogos')">Показать список</button>
-    </h2>
-    <div id="logosContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Стиль</th>
-            <th>Версия</th>
-            <th>Дата выхода</th>
-            <th>Размер файла</th>
-            <th>Количество изображений</th>
-            <th>Ссылка на загрузку</th>
-            <th>Оригинал поста</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>FMG Standard</td>
-            <td>2025.04</td>
-            <td>6 января 2025</td>
-            <td>5 Гб</td>
-            <td>261,675</td>
-            <td><a href="https://t.me/OKVFMchat/943" target="_blank">Скачать</a></td>
-            <td>
-              <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank">
-                <button>Перейти</button>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section id="trophies">
-    <h2>
-      Трофеи
-      <button id="toggleTrophies" onclick="toggleSection('trophiesContent','toggleTrophies')">Показать список</button>
-    </h2>
-    <div id="trophiesContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Стиль</th>
-            <th>Версия</th>
-            <th>Дата выхода</th>
-            <th>Размер файла</th>
-            <th>Количество изображений</th>
-            <th>Ссылка на загрузку</th>
-            <th>Оригинал поста</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>sortitoutsi</td>
-            <td>2025.02</td>
-            <td>15 января 2025</td>
-            <td>150 Мб</td>
-            <td>2,002</td>
-            <td><a href="https://t.me/OKVFMchat/945" target="_blank">Скачать</a></td>
-            <td rowspan="2">
-              <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank">
-                <button>Перейти</button>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>sortitoutsi</td>
-            <td>2025.03</td>
-            <td>15 февраля 2025</td>
-            <td>7 Мб</td>
-            <td>88</td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1030" target="_blank">Скачать</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section id="forms">
-    <h2>
-      Формы
-      <button id="toggleForms" onclick="toggleSection('formsContent','toggleForms')">Показать список</button>
-    </h2>
-    <div id="formsContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Стиль</th>
-            <th>Версия</th>
-            <th>Дата выхода</th>
-            <th>Размер файла</th>
-            <th>Количество изображений</th>
-            <th>Ссылка на загрузку</th>
-            <th>Оригинал поста</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>FC'12</td>
-            <td>Мегапак</td>
-            <td>10 февраля 2025</td>
-            <td>1 Гб</td>
-            <td>—</td>
-            <td><a href="https://t.me/OKVFMchat/946" target="_blank">Скачать</a></td>
-            <td rowspan="3">
-              <a href="https://fmslovakia.com/" target="_blank">
-                <button>Перейти</button>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>FC'12</td>
-            <td>Обновление 1</td>
-            <td>17 февраля 2025</td>
-            <td>28 Мб</td>
-            <td>—</td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1174" target="_blank">Скачать</a></td>
-          </tr>
-          <tr>
-            <td>FC'12</td>
-            <td>Обновление 2</td>
-            <td>23 февраля 2025</td>
-            <td>21 Мб</td>
-            <td>—</td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1396" target="_blank">Скачать</a></td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="center-bold">
-        ФИКС цвета для ФОРМ – файл нужен для того, чтобы корректно отображались формы, работает только с новой карьерой, поместить в папку editor data.
-        <a href="https://t.me/kitsforfmbyOKV/293?comment=1236" target="_blank">Скачать</a>
-      </p>
-    </div>
-  </section>
-  <section id="background">
-    <h2>
-      Задний фон
-      <button id="toggleBackground" onclick="toggleSection('backgroundContent','toggleBackground')">Показать список</button>
-    </h2>
-    <div id="backgroundContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Стиль</th>
-            <th>Версия</th>
-            <th>Дата выхода</th>
-            <th>Размер файла</th>
-            <th>Количество изображений</th>
-            <th>Ссылка на загрузку</th>
-            <th>Оригинал поста</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>sortitoutsi</td>
-            <td>2025.03</td>
-            <td>19 февраля 2025</td>
-            <td>
-              Стадионы 4,2 Гб<br>
-              Города 5,2 Гб<br>
-              Фанаты 980 Мб<br>
-              Персонал 8 Гб<br>
-              Сборные и турниры 110 Мб
-            </td>
-            <td>
-              Стадионы 24,074<br>
-              Города 22,234<br>
-              Фанаты 2,703<br>
-              Персонал 44,596<br>
-              Сборные и турниры 634
-            </td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank">Скачать</a></td>
-            <td>
-              <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank">
-                <button>Перейти</button>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section id="transfers">
-    <h2>
-      Трансферы
-      <button id="toggleTransfers" onclick="toggleSection('transfersContent','toggleTransfers')">Показать список</button>
-    </h2>
-    <div id="transfersContent" style="display: none;">
-      <table>
-        <thead>
-          <tr>
-            <th>Авторы</th>
-            <th>Дата выхода</th>
-            <th>Ссылка на загрузку</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <a href="https://fmtransferupdate.com/download" target="_blank">
-                <button>FMTU</button>
-              </a>
-            </td>
-            <td>15 февраля 2025</td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1405" target="_blank">Скачать</a></td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://sortitoutsi.net/football-manager-data-update/download" target="_blank">
-                <button>sortitoutsi</button>
-              </a>
-            </td>
-            <td>23 февраля 2025</td>
-            <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1404" target="_blank">Скачать</a></td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="center-bold">
-        <strong>Советую переходить по ссылкам на оригинал, потому-что трансферы могут обновляться чаще того, чем я выкладываю в свой канал.</strong>
-      </p>
-    </div>
-  </section>
-  <section id="instructions">
-    <h2>
-      <strong>Инструкция</strong>
-      <button id="toggleInstructions" onclick="toggleSection('instructionsContent','toggleInstructions')">Показать</button>
-    </h2>
-    <div id="instructionsContent" style="display: none;">
-      <p style="white-space: pre-wrap; text-align: center;">
-        <strong>
-1) Для Windows -> Разархивируй АРХИВ по пути Мои документы/Sports Interactive/Football Manager 20**/graphics/<br><br>
-1.1) Для MacOS -> Разархивируй АРХИВ по пути Библиотека/Application Support/Sports Interactive/Football Manager 20**/graphics/<br>
-ЕСЛИ папки graphics нет, то СОЗДАЙ её;<br><br>
-2) Зайди в FM и в настройках игры на вкладке "Общие" - "Расширенный" - "Интерфейс" - Тема : "Использовать кэширование для снижения времени загрузки страниц" - снять галочку. "Обновить скин после подтверждения изменений в настройках" - поставить галочку.<br><br>
-3) ГРУЗАНИ скин.<br><br>
+
+    <div id="lang-ru">
+      <!-- About Section -->
+      <section id="about">
+        <h2><strong>Об Авторе</strong></h2>
+        <div>
+          <p>Всем привет! Меня зовут Кирилл и я занимаюсь тем, что делаю формы для команд из России в стиле FC'12, а так же действующий ресерчер игры.</p>
+          <p class="center-bold">
+            Не забудь подписаться на мой канал <a href="https://t.me/kitsforfmbyOKV" target="_blank">t.me/kitsforfmbyOKV</a>
+          </p>
+          <p>И если хочешь отблагодарить меня, то 4276 4000 6675 4566</p>
+        </div>
+      </section>
+
+      <!-- Faces Section -->
+      <section id="faces">
+        <h2>
+          Лица
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('facesContent', this)">Показать список</button>
+        </h2>
+        <div id="facesContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+                <th>Оригинал поста</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cut-Out</td>
+                <td>2025.02</td>
+                <td>7 января 2025</td>
+                <td>15 Гб</td>
+                <td>485,166</td>
+                <td><a href="https://t.me/OKVFMchat/943" target="_blank">Скачать</a></td>
+                <td rowspan="2">
+                  <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank">
+                    <button>Перейти</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Cut-Out</td>
+                <td>2025.03</td>
+                <td>11 февраля 2025</td>
+                <td>236 Мб</td>
+                <td>8,074</td>
+                <td><a href="https://t.me/OKVFMchat/965" target="_blank">Скачать</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Logos Section -->
+      <section id="logos">
+        <h2>
+          Логотипы
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('logosContent', this)">Показать список</button>
+        </h2>
+        <div id="logosContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+                <th>Оригинал поста</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FMG Standard</td>
+                <td>2025.04</td>
+                <td>6 января 2025</td>
+                <td>5 Гб</td>
+                <td>261,675</td>
+                <td><a href="https://t.me/OKVFMchat/943" target="_blank">Скачать</a></td>
+                <td>
+                  <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank">
+                    <button>Перейти</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Trophies Section -->
+      <section id="trophies">
+        <h2>
+          Трофеи
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('trophiesContent', this)">Показать список</button>
+        </h2>
+        <div id="trophiesContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+                <th>Оригинал поста</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.04</td>
+                <td>15 января 2025</td>
+                <td>150 Мб</td>
+                <td>2,002</td>
+                <td><a href="https://t.me/OKVFMchat/945" target="_blank">Скачать</a></td>
+                <td rowspan="2">
+                  <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank">
+                    <button>Перейти</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.03</td>
+                <td>15 февраля 2025</td>
+                <td>7 Мб</td>
+                <td>88</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1030" target="_blank">Скачать</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Kits Section -->
+      <section id="forms">
+        <h2>
+          Формы
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('formsContent', this)">Показать список</button>
+        </h2>
+        <div id="formsContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+                <th>Оригинал поста</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FC'12</td>
+                <td>Мегапак</td>
+                <td>10 февраля 2025</td>
+                <td>1 Гб</td>
+                <td>—</td>
+                <td><a href="https://t.me/OKVFMchat/946" target="_blank">Скачать</a></td>
+                <td rowspan="3">
+                  <a href="https://fmslovakia.com/" target="_blank">
+                    <button>Перейти</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>FC'12</td>
+                <td>Обновление 1</td>
+                <td>17 февраля 2025</td>
+                <td>28 Мб</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1174" target="_blank">Скачать</a></td>
+              </tr>
+              <tr>
+                <td>FC'12</td>
+                <td>Обновление 2</td>
+                <td>23 февраля 2025</td>
+                <td>21 Мб</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1396" target="_blank">Скачать</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="center-bold">
+            ФИКС цвета для ФОРМ – файл нужен для того, чтобы корректно отображались формы, работает только с новой карьерой, поместить в папку editor data.
+            <a href="https://t.me/OKVFMchat/293?comment=1236" target="_blank">Скачать</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Background Section -->
+      <section id="background">
+        <h2>
+          Задний фон
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('backgroundContent', this)">Показать список</button>
+        </h2>
+        <div id="backgroundContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+                <th>Оригинал поста</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.03</td>
+                <td>19 февраля 2025</td>
+                <td>
+                  Стадионы 4,2 Гб<br>
+                  Города 5,2 Гб<br>
+                  Фанаты 980 Мб<br>
+                  Персонал 8 Гб<br>
+                  Сборные и турниры 110 Мб
+                </td>
+                <td>
+                  Стадионы 24,074<br>
+                  Города 22,234<br>
+                  Фанаты 2,703<br>
+                  Персонал 44,596<br>
+                  Сборные и турниры 634
+                </td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank">Скачать</a></td>
+                <td>
+                  <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank">
+                    <button>Перейти</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Transfers Section -->
+      <section id="transfers">
+        <h2>
+          Трансферы
+          <button data-closed="Показать список" data-open="Скрыть список" onclick="toggleSection('transfersContent', this)">Показать список</button>
+        </h2>
+        <div id="transfersContent" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Авторы</th>
+                <th>Дата выхода</th>
+                <th>Ссылка на загрузку</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="https://fmtransferupdate.com/download" target="_blank">
+                    <button>FMTU</button>
+                  </a>
+                </td>
+                <td>15 февраля 2025</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1405" target="_blank">Скачать</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://sortitoutsi.net/football-manager-data-update/download" target="_blank">
+                    <button>sortitoutsi</button>
+                  </a>
+                </td>
+                <td>23 февраля 2025</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1404" target="_blank">Скачать</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="center-bold">
+            <strong>Советую переходить по ссылкам на оригинал, потому-что трансферы могут обновляться чаще того, чем я выкладываю в свой канал.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- Instructions Section -->
+      <section id="instructions">
+        <h2>
+          <strong>Инструкция</strong>
+          <button data-closed="Показать" data-open="Скрыть список" onclick="toggleSection('instructionsContent', this)">Показать</button>
+        </h2>
+        <div id="instructionsContent" class="toggle-content">
+          <p style="white-space: pre-wrap; text-align: center;">
+            <strong>
+1) Для Windows -> Разархивируй АРХИВ по пути Мои документы/Sports Interactive/Football Manager 20**/graphics/
+
+1.1) Для MacOS -> Разархивируй АРХИВ по пути Библиотека/Application Support/Sports Interactive/Football Manager 20**/graphics/
+ЕСЛИ папки graphics нет, то СОЗДАЙ её;
+
+2) Зайди в FM и в настройках игры на вкладке "Общие" - "Расширенный" - "Интерфейс" - Тема: "Использовать кэширование для снижения времени загрузки страниц" - снять галочку. "Обновить скин после подтверждения изменений в настройках" - поставить галочку.
+
+3) ГРУЗАНИ скин.
+
 4) ФАЙЛЫ ОБНОВЛЕНИЯ СКОПИРУЙ ПРОСТО С ЗАМЕНОЙ В ПАПКУ)00))
-        </strong>
-      </p>
+            </strong>
+          </p>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <!-- English Version -->
+    <div id="lang-en" style="display: none;">
+      <!-- About Section -->
+      <section id="about-en">
+        <h2><strong>About the Author</strong></h2>
+        <div>
+          <p>Hello everyone! My name is Kirill, and I create kits for Russian teams in the FC'12 style, as well as work as an active game researcher.</p>
+          <p class="center-bold">
+            Don't forget to subscribe to my channel <a href="https://t.me/kitsforfmbyOKV" target="_blank">t.me/kitsforfmbyOKV</a>
+          </p>
+          <p>And if you wish to thank me, here is my account: 4276 4000 6675 4566</p>
+        </div>
+      </section>
+
+      <!-- Faces Section -->
+      <section id="faces-en">
+        <h2>
+          Faces
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('facesContent-en', this)">Show list</button>
+        </h2>
+        <div id="facesContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>File Size</th>
+                <th>Number of Images</th>
+                <th>Download Link</th>
+                <th>Original Post</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cut-Out</td>
+                <td>2025.02</td>
+                <td>January 7, 2025</td>
+                <td>15 GB</td>
+                <td>485,166</td>
+                <td><a href="https://t.me/OKVFMchat/943" target="_blank">Download</a></td>
+                <td rowspan="2">
+                  <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank">
+                    <button>Go</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Cut-Out</td>
+                <td>2025.03</td>
+                <td>February 11, 2025</td>
+                <td>236 MB</td>
+                <td>8,074</td>
+                <td><a href="https://t.me/OKVFMchat/965" target="_blank">Download</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Logos Section -->
+      <section id="logos-en">
+        <h2>
+          Logos
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('logosContent-en', this)">Show list</button>
+        </h2>
+        <div id="logosContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>File Size</th>
+                <th>Number of Images</th>
+                <th>Download Link</th>
+                <th>Original Post</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FMG Standard</td>
+                <td>2025.04</td>
+                <td>January 6, 2025</td>
+                <td>5 GB</td>
+                <td>261,675</td>
+                <td><a href="https://t.me/OKVFMchat/943" target="_blank">Download</a></td>
+                <td>
+                  <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank">
+                    <button>Go</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Trophies Section -->
+      <section id="trophies-en">
+        <h2>
+          Trophies
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('trophiesContent-en', this)">Show list</button>
+        </h2>
+        <div id="trophiesContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>File Size</th>
+                <th>Number of Images</th>
+                <th>Download Link</th>
+                <th>Original Post</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.04</td>
+                <td>January 15, 2025</td>
+                <td>150 MB</td>
+                <td>2,002</td>
+                <td><a href="https://t.me/OKVFMchat/945" target="_blank">Download</a></td>
+                <td rowspan="2">
+                  <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank">
+                    <button>Go</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.03</td>
+                <td>February 15, 2025</td>
+                <td>7 MB</td>
+                <td>88</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1030" target="_blank">Download</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Kits Section -->
+      <section id="forms-en">
+        <h2>
+          Kits
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('formsContent-en', this)">Show list</button>
+        </h2>
+        <div id="formsContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>File Size</th>
+                <th>Number of Images</th>
+                <th>Download Link</th>
+                <th>Original Post</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FC'12</td>
+                <td>Mega Pack</td>
+                <td>February 10, 2025</td>
+                <td>1 GB</td>
+                <td>—</td>
+                <td><a href="https://t.me/OKVFMchat/946" target="_blank">Download</a></td>
+                <td rowspan="3">
+                  <a href="https://fmslovakia.com/" target="_blank">
+                    <button>Go</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>FC'12</td>
+                <td>Update 1</td>
+                <td>February 17, 2025</td>
+                <td>28 MB</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1174" target="_blank">Download</a></td>
+              </tr>
+              <tr>
+                <td>FC'12</td>
+                <td>Update 2</td>
+                <td>February 23, 2025</td>
+                <td>21 MB</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1396" target="_blank">Download</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="center-bold">
+            Color fix for kits – This file is needed to ensure kits display correctly. It works only with the new career. Place it in the editor data folder.
+            <a href="https://t.me/OKVFMchat/293?comment=1236" target="_blank">Download</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Background Section -->
+      <section id="background-en">
+        <h2>
+          Background
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('backgroundContent-en', this)">Show list</button>
+        </h2>
+        <div id="backgroundContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Style</th>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>File Size</th>
+                <th>Number of Images</th>
+                <th>Download Link</th>
+                <th>Original Post</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sortitoutsi</td>
+                <td>2025.03</td>
+                <td>February 19, 2025</td>
+                <td>
+                  Stadia 4.2 GB<br>
+                  Cities 5.2 GB<br>
+                  Fans 980 MB<br>
+                  Staff 8 GB<br>
+                  National teams and tournaments 110 MB
+                </td>
+                <td>
+                  Stadia 24,074<br>
+                  Cities 22,234<br>
+                  Fans 2,703<br>
+                  Staff 44,596<br>
+                  National teams and tournaments 634
+                </td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank">Download</a></td>
+                <td>
+                  <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank">
+                    <button>Go</button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Transfers Section -->
+      <section id="transfers-en">
+        <h2>
+          Transfers
+          <button data-closed="Show list" data-open="Hide list" onclick="toggleSection('transfersContent-en', this)">Show list</button>
+        </h2>
+        <div id="transfersContent-en" class="toggle-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Authors</th>
+                <th>Release Date</th>
+                <th>Download Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="https://fmtransferupdate.com/download" target="_blank">
+                    <button>FMTU</button>
+                  </a>
+                </td>
+                <td>February 15, 2025</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1405" target="_blank">Download</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://sortitoutsi.net/football-manager-data-update/download" target="_blank">
+                    <button>sortitoutsi</button>
+                  </a>
+                </td>
+                <td>February 23, 2025</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1404" target="_blank">Download</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="center-bold">
+            <strong>It is recommended to follow the original links, as transfers may be updated more frequently than I post them on my channel.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- Instructions Section -->
+      <section id="instructions-en">
+        <h2>
+          <strong>Instructions</strong>
+          <button data-closed="Show" data-open="Hide list" onclick="toggleSection('instructionsContent-en', this)">Show</button>
+        </h2>
+        <div id="instructionsContent-en" class="toggle-content">
+          <p style="white-space: pre-wrap; text-align: center;">
+            <strong>
+1) For Windows -> Extract the ARCHIVE to the path: My Documents/Sports Interactive/Football Manager 20**/graphics/
+
+1.1) For MacOS -> Extract the ARCHIVE to the path: Library/Application Support/Sports Interactive/Football Manager 20**/graphics/
+IF the "graphics" folder does not exist, CREATE it;
+
+2) Open FM and, in the game settings under "General" - "Advanced" - "Interface", uncheck "Use caching to reduce page load times" and check "Update skin after confirming changes".
+
+3) LOAD the skin.
+
+4) COPY THE UPDATE FILES (REPLACING EXISTING ONES) INTO THE FOLDER.
+            </strong>
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <button id="scrollTop" onclick="scrollToTop()">↑ Наверх</button>
+  </div>
+
   <script>
-    function toggleSection(contentId, buttonId) {
-      var content = document.getElementById(contentId);
-      var btn = document.getElementById(buttonId);
-      if (content.style.display === "none") {
-        content.style.display = "block";
-        if (buttonId === "toggleInstructions") {
-          btn.textContent = "Скрыть список";
-        } else {
-          btn.textContent = "Скрыть список";
-        }
+    function toggleSection(contentId, btn) {
+      const content = document.getElementById(contentId);
+      content.classList.toggle('open');
+      btn.textContent = content.classList.contains('open') 
+        ? btn.dataset.open 
+        : btn.dataset.closed;
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTopBtn = document.getElementById('scrollTop');
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
       } else {
-        content.style.display = "none";
-        if (buttonId === "toggleInstructions") {
-          btn.textContent = "Показать";
-        } else {
-          btn.textContent = "Показать список";
-        }
+        scrollTopBtn.classList.remove('visible');
       }
+    });
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[id^="lang-"]').forEach(el => {
+        el.style.display = el.id === `lang-${lang}` ? 'block' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const btn = document.getElementById('themeToggleBtn');
+      document.body.classList.toggle('dark-theme');
+      btn.textContent = document.body.classList.contains('dark-theme') 
+        ? 'Светлая тема' 
+        : 'Тёмная тема';
     }
   </script>
 </body>
