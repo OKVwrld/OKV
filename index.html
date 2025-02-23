@@ -25,7 +25,6 @@
       margin-left: 10px;
       cursor: pointer;
     }
-    /* Стили для таблицы */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -41,7 +40,6 @@
     th {
       background-color: #f9f9f9;
     }
-    /* Центрирование и жирное выделение */
     .center-bold {
       text-align: center;
       font-weight: bold;
@@ -49,19 +47,16 @@
   </style>
 </head>
 <body>
-
-  <!-- Раздел "Об Авторе" (перенесён в начало) -->
   <section id="about">
     <h2><strong>Об Авторе</strong></h2>
-    <div class="center-bold">
-      <p>Всем привет, меня зовут Кирилл и я занимаюсь тем, что хочу сделать мир FM лучше и красочнее.
-      На данный момент я делаю формы для команд из России в стиле FC'12, а так же действующий ресерчер игры.</p>
-      <p>Не забудь <strong>подписаться</strong> на мой канал <a href="https://t.me/kitsforfmbyOKV" target="_blank">t.me/kitsforfmbyOKV</a></p>
+    <div>
+      <p>Всем привет! Меня зовут Кирилл и я занимаюсь тем, что делаю формы для команд из России в стиле FC'12, а так же действующий ресерчер игры.</p>
+      <p style="text-align: center; font-weight: bold;">
+        Не забудь подписаться на мой канал <a href="https://t.me/kitsforfmbyOKV" target="_blank">t.me/kitsforfmbyOKV</a>
+      </p>
       <p>И если хочешь отблагодарить меня, то 4276 4000 6675 4566</p>
     </div>
   </section>
-
-  <!-- Раздел Лица -->
   <section id="faces">
     <h2>
       Лица
@@ -106,8 +101,6 @@
       </table>
     </div>
   </section>
-
-  <!-- Раздел Логотипы -->
   <section id="logos">
     <h2>
       Логотипы
@@ -144,8 +137,6 @@
       </table>
     </div>
   </section>
-
-  <!-- Раздел Трофеи -->
   <section id="trophies">
     <h2>
       Трофеи
@@ -190,8 +181,6 @@
       </table>
     </div>
   </section>
-
-  <!-- Раздел Формы -->
   <section id="forms">
     <h2>
       Формы
@@ -248,8 +237,6 @@
       </p>
     </div>
   </section>
-
-  <!-- Раздел Задний фон -->
   <section id="background">
     <h2>
       Задний фон
@@ -298,8 +285,6 @@
       </table>
     </div>
   </section>
-
-  <!-- Раздел Трансферы (обновлённая таблица) -->
   <section id="transfers">
     <h2>
       Трансферы
@@ -340,32 +325,42 @@
       </p>
     </div>
   </section>
-
-  <!-- Раздел "Инструкция" -->
   <section id="instructions">
-    <h2><strong>Инструкция</strong></h2>
-    <p style="white-space: pre-wrap; text-align: center;">
-      <strong>
+    <h2>
+      <strong>Инструкция</strong>
+      <button id="toggleInstructions" onclick="toggleSection('instructionsContent','toggleInstructions')">Показать</button>
+    </h2>
+    <div id="instructionsContent" style="display: none;">
+      <p style="white-space: pre-wrap; text-align: center;">
+        <strong>
 1) Для Windows -> Разархивируй АРХИВ по пути Мои документы/Sports Interactive/Football Manager 20**/graphics/<br><br>
 1.1) Для MacOS -> Разархивируй АРХИВ по пути Библиотека/Application Support/Sports Interactive/Football Manager 20**/graphics/<br>
 ЕСЛИ папки graphics нет, то СОЗДАЙ её;<br><br>
 2) Зайди в FM и в настройках игры на вкладке "Общие" - "Расширенный" - "Интерфейс" - Тема : "Использовать кэширование для снижения времени загрузки страниц" - снять галочку. "Обновить скин после подтверждения изменений в настройках" - поставить галочку.<br><br>
 3) ГРУЗАНИ скин.<br><br>
 4) ФАЙЛЫ ОБНОВЛЕНИЯ СКОПИРУЙ ПРОСТО С ЗАМЕНОЙ В ПАПКУ)00))
-      </strong>
-    </p>
+        </strong>
+      </p>
+    </div>
   </section>
-
   <script>
     function toggleSection(contentId, buttonId) {
       var content = document.getElementById(contentId);
       var btn = document.getElementById(buttonId);
       if (content.style.display === "none") {
         content.style.display = "block";
-        btn.textContent = "Скрыть список";
+        if (buttonId === "toggleInstructions") {
+          btn.textContent = "Скрыть список";
+        } else {
+          btn.textContent = "Скрыть список";
+        }
       } else {
         content.style.display = "none";
-        btn.textContent = "Показать список";
+        if (buttonId === "toggleInstructions") {
+          btn.textContent = "Показать";
+        } else {
+          btn.textContent = "Показать список";
+        }
       }
     }
   </script>
