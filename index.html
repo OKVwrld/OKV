@@ -119,6 +119,12 @@
       box-shadow: var(--shadow);
     }
 
+    caption {
+      caption-side: top;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
     th, td {
       padding: 12px 15px;
       text-align: left;
@@ -168,6 +174,7 @@
       visibility: hidden;
       transition: all var(--transition-speed);
       box-shadow: var(--shadow);
+      z-index: 1000;
     }
 
     #scrollTop.visible {
@@ -245,10 +252,11 @@
       <section id="faces">
         <h2>
           Лица
-          <button data-toggle="facesContent" aria-expanded="false">Показать</button>
+          <button data-toggle="facesContent" aria-controls="facesContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="facesContent" class="toggle-content">
           <table>
+            <caption>Лица: Скачивание и обновления</caption>
             <thead>
               <tr>
                 <th>Стиль</th>
@@ -295,10 +303,11 @@
       <section id="logos">
         <h2>
           Логотипы
-          <button data-toggle="logosContent" aria-expanded="false">Показать</button>
+          <button data-toggle="logosContent" aria-controls="logosContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="logosContent" class="toggle-content">
           <table>
+            <caption>Логотипы: Скачивание и обновления</caption>
             <thead>
               <tr>
                 <th>Стиль</th>
@@ -334,10 +343,11 @@
       <section id="trophies">
         <h2>
           Трофеи
-          <button data-toggle="trophiesContent" aria-expanded="false">Показать</button>
+          <button data-toggle="trophiesContent" aria-controls="trophiesContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="trophiesContent" class="toggle-content">
           <table>
+            <caption>Трофеи: Скачивание и обновления</caption>
             <thead>
               <tr>
                 <th>Стиль</th>
@@ -384,10 +394,11 @@
       <section id="forms">
         <h2>
           Формы
-          <button data-toggle="formsContent" aria-expanded="false">Показать</button>
+          <button data-toggle="formsContent" aria-controls="formsContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="formsContent" class="toggle-content">
           <table>
+            <caption>Формы: Скачивание и обновления</caption>
             <thead>
               <tr>
                 <th>Стиль</th>
@@ -442,10 +453,11 @@
       <section id="background">
         <h2>
           Задний фон
-          <button data-toggle="backgroundContent" aria-expanded="false">Показать</button>
+          <button data-toggle="backgroundContent" aria-controls="backgroundContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="backgroundContent" class="toggle-content">
           <table>
+            <caption>Задний фон: Скачивание</caption>
             <thead>
               <tr>
                 <th>Стиль</th>
@@ -492,10 +504,11 @@
       <section id="transfers">
         <h2>
           Трансферы
-          <button data-toggle="transfersContent" aria-expanded="false">Показать</button>
+          <button data-toggle="transfersContent" aria-controls="transfersContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="transfersContent" class="toggle-content">
           <table>
+            <caption>Трансферы: Информация и ссылки</caption>
             <thead>
               <tr>
                 <th>Авторы</th>
@@ -534,10 +547,10 @@
       <section id="instructions">
         <h2>
           Инструкция
-          <button data-toggle="instructionsContent" aria-expanded="false">Показать</button>
+          <button data-toggle="instructionsContent" aria-controls="instructionsContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="instructionsContent" class="toggle-content">
-          <p style="white-space: pre-wrap; text-align: center;">
+          <p class="instruction-text" style="white-space: pre-wrap; text-align: center;">
             <strong>
 1) Для Windows -> Разархивируй АРХИВ по пути Мои документы/Sports Interactive/Football Manager 20**/graphics/
 
@@ -562,6 +575,18 @@
     (() => {
       'use strict';
 
+      // Функция throttle для оптимизации производительности скролла
+      const throttle = (func, limit) => {
+        let inThrottle;
+        return function(...args) {
+          if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+          }
+        };
+      };
+
       class FMGraphicsApp {
         constructor() {
           this.initTheme();
@@ -580,7 +605,7 @@
         initEventListeners() {
           document.getElementById('themeToggleBtn').addEventListener('click', () => this.toggleTheme());
           document.body.addEventListener('click', (e) => this.handleClick(e));
-          window.addEventListener('scroll', () => this.toggleScrollTopButton());
+          window.addEventListener('scroll', throttle(() => this.toggleScrollTopButton(), 100));
           document.getElementById('scrollTop').addEventListener('click', () => this.scrollToTop());
         }
 
