@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FM Graphics Collection by OKV - Лучшие графические пакеты для Football Manager">
+  <meta name="keywords" content="Football Manager, FM Graphics, OKV, лица, логотипы, трофеи, формы">
   <title>FM Graphics Collection by OKV</title>
   <style>
     :root {
@@ -74,7 +75,7 @@
       transition: all var(--transition-speed);
     }
 
-    h2 {
+    h1, h2 {
       margin: 0 0 15px 0;
       padding-bottom: 10px;
       border-bottom: 2px solid var(--border-color);
@@ -82,6 +83,13 @@
       justify-content: space-between;
       align-items: center;
       gap: 15px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
       font-size: 1.5rem;
     }
 
@@ -208,6 +216,11 @@
       100% { opacity: 0; transform: translateY(-20px); }
     }
 
+    @media (max-width: 1024px) {
+      .container { max-width: 900px; }
+      section { padding: 18px; }
+    }
+
     @media (max-width: 768px) {
       body { padding: 10px; }
       section { padding: 15px; }
@@ -248,6 +261,7 @@
 <body>
   <div class="container">
     <header class="header-controls">
+      <h1>FM Graphics Collection by OKV</h1>
       <button id="themeToggleBtn" aria-label="Переключить тему">🌓 Тема</button>
     </header>
 
@@ -603,7 +617,7 @@
       </section>
     </main>
 
-    <button id="scrollTop" title="Наверх" tabindex="-1" aria-hidden="true">↑</button>
+    <button id="scrollTop" title="Наверх">↑</button>
   </div>
 
   <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
@@ -624,6 +638,7 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
           } catch (error) {
             console.error('Ошибка при инициализации темы:', error);
+            this.showToast('Не удалось загрузить тему.');
           }
         }
 
@@ -643,6 +658,7 @@
             this.showToast(`Тема изменена на ${newTheme === 'dark' ? 'тёмную' : 'светлую'}`);
           } catch (error) {
             console.error('Ошибка при переключении темы:', error);
+            this.showToast('Не удалось изменить тему.');
           }
         }
 
