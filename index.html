@@ -227,6 +227,22 @@
         overflow-y: auto;
       }
     }
+
+    /* Стили для печати */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact;
+        color: #000 !important;
+        background: none !important;
+        box-shadow: none !important;
+      }
+      header, button, #scrollTop, .toast {
+        display: none !important;
+      }
+      section {
+        page-break-inside: avoid;
+      }
+    }
   </style>
 </head>
 <body>
@@ -237,8 +253,8 @@
 
     <main>
       <!-- About Section -->
-      <section id="about">
-        <h2><strong>Об Авторе</strong></h2>
+      <section id="about" role="region" aria-labelledby="about-heading">
+        <h2 id="about-heading"><strong>Об Авторе</strong></h2>
         <div>
           <p>Всем привет! Меня зовут Кирилл и я занимаюсь тем, что делаю формы для команд из России в стиле FC'12, а также действующий ресерчер игры.</p>
           <p class="center-bold">
@@ -249,10 +265,10 @@
       </section>
 
       <!-- Faces Section -->
-      <section id="faces">
-        <h2>
+      <section id="faces" role="region" aria-labelledby="faces-heading">
+        <h2 id="faces-heading">
           Лица
-          <button data-toggle="facesContent" aria-expanded="false">Показать</button>
+          <button data-toggle="facesContent" aria-expanded="false" aria-controls="facesContent">Показать</button>
         </h2>
         <div id="facesContent" class="toggle-content">
           <table>
@@ -303,10 +319,10 @@
       </section>
 
       <!-- Logos Section -->
-      <section id="logos">
-        <h2>
+      <section id="logos" role="region" aria-labelledby="logos-heading">
+        <h2 id="logos-heading">
           Логотипы
-          <button data-toggle="logosContent" aria-expanded="false">Показать</button>
+          <button data-toggle="logosContent" aria-expanded="false" aria-controls="logosContent">Показать</button>
         </h2>
         <div id="logosContent" class="toggle-content">
           <table>
@@ -344,10 +360,10 @@
       </section>
 
       <!-- Trophies Section -->
-      <section id="trophies">
-        <h2>
+      <section id="trophies" role="region" aria-labelledby="trophies-heading">
+        <h2 id="trophies-heading">
           Трофеи
-          <button data-toggle="trophiesContent" aria-expanded="false">Показать</button>
+          <button data-toggle="trophiesContent" aria-expanded="false" aria-controls="trophiesContent">Показать</button>
         </h2>
         <div id="trophiesContent" class="toggle-content">
           <table>
@@ -398,10 +414,10 @@
       </section>
 
       <!-- Kits Section -->
-      <section id="forms">
-        <h2>
+      <section id="forms" role="region" aria-labelledby="forms-heading">
+        <h2 id="forms-heading">
           Формы
-          <button data-toggle="formsContent" aria-expanded="false">Показать</button>
+          <button data-toggle="formsContent" aria-expanded="false" aria-controls="formsContent">Показать</button>
         </h2>
         <div id="formsContent" class="toggle-content">
           <table>
@@ -463,10 +479,10 @@
       </section>
 
       <!-- Background Section -->
-      <section id="background">
-        <h2>
+      <section id="background" role="region" aria-labelledby="background-heading">
+        <h2 id="background-heading">
           Задний фон
-          <button data-toggle="backgroundContent" aria-expanded="false">Показать</button>
+          <button data-toggle="backgroundContent" aria-expanded="false" aria-controls="backgroundContent">Показать</button>
         </h2>
         <div id="backgroundContent" class="toggle-content">
           <table>
@@ -516,10 +532,10 @@
       </section>
 
       <!-- Transfers Section -->
-      <section id="transfers">
-        <h2>
+      <section id="transfers" role="region" aria-labelledby="transfers-heading">
+        <h2 id="transfers-heading">
           Трансферы
-          <button data-toggle="transfersContent" aria-expanded="false">Показать</button>
+          <button data-toggle="transfersContent" aria-expanded="false" aria-controls="transfersContent">Показать</button>
         </h2>
         <div id="transfersContent" class="toggle-content">
           <table>
@@ -563,10 +579,10 @@
       </section>
 
       <!-- Instructions Section -->
-      <section id="instructions">
-        <h2>
+      <section id="instructions" role="region" aria-labelledby="instructions-heading">
+        <h2 id="instructions-heading">
           <strong>Инструкция</strong>
-          <button data-toggle="instructionsContent" aria-expanded="false">Показать</button>
+          <button data-toggle="instructionsContent" aria-expanded="false" aria-controls="instructionsContent">Показать</button>
         </h2>
         <div id="instructionsContent" class="toggle-content">
           <p style="white-space: pre-wrap; text-align: center;">
@@ -587,13 +603,13 @@
       </section>
     </main>
 
-    <button id="scrollTop" title="Наверх">↑</button>
+    <button id="scrollTop" title="Наверх" tabindex="-1" aria-hidden="true">↑</button>
   </div>
 
   <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    (function() {
+    (() => {
       'use strict';
 
       class FMGraphicsApp {
@@ -603,8 +619,12 @@
         }
 
         initTheme() {
-          const savedTheme = localStorage.getItem('theme') || 'light';
-          document.documentElement.setAttribute('data-theme', savedTheme);
+          try {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          } catch (error) {
+            console.error('Ошибка при инициализации темы:', error);
+          }
         }
 
         initEventListeners() {
@@ -615,23 +635,23 @@
         }
 
         toggleTheme() {
-          const currentTheme = document.documentElement.getAttribute('data-theme');
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', newTheme);
-          localStorage.setItem('theme', newTheme);
-          this.showToast(`Тема изменена на ${newTheme === 'dark' ? 'тёмную' : 'светлую'}`);
+          try {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            this.showToast(`Тема изменена на ${newTheme === 'dark' ? 'тёмную' : 'светлую'}`);
+          } catch (error) {
+            console.error('Ошибка при переключении темы:', error);
+          }
         }
 
         handleClick(e) {
           // Если клик произошёл по ссылке для скачивания, не обрабатываем событие,
           // чтобы ссылка работала стандартно.
-          if (e.target.closest('[data-download]')) {
-            return;
-          }
+          if (e.target.closest('[data-download]')) return;
           const toggleBtn = e.target.closest('[data-toggle]');
-          if (toggleBtn) {
-            this.toggleSection(toggleBtn);
-          }
+          if (toggleBtn) this.toggleSection(toggleBtn);
         }
 
         toggleSection(btn) {
@@ -647,7 +667,11 @@
         }
 
         toggleScrollTopButton() {
-          document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
+          const scrollBtn = document.getElementById('scrollTop');
+          const isVisible = window.scrollY > 300;
+          scrollBtn.classList.toggle('visible', isVisible);
+          scrollBtn.tabIndex = isVisible ? 0 : -1;
+          scrollBtn.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
         }
 
         scrollToTop() {
@@ -664,6 +688,15 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => new FMGraphicsApp());
+
+      // Глобальная обработка ошибок JavaScript
+      window.addEventListener('error', (e) => {
+        console.error('JS Error:', e.message, 'in', e.filename, 'at line', e.lineno);
+      });
+
+      window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled promise rejection:', event.reason);
+      });
     })();
   </script>
 </body>
