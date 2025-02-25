@@ -215,6 +215,17 @@
       header.header-controls { flex-direction: column; }
       tr.upd td:first-child { padding-left: 50px; }
       .upd-marker { left: 10px; font-size: 14px; }
+      h2 {
+        flex-wrap: wrap;
+        font-size: 1.3rem;
+      }
+      h2 button {
+        margin-top: 10px;
+      }
+      .toggle-content.open {
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+      }
     }
   </style>
 </head>
