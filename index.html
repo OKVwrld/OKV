@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FM Graphics Collection by Kirill - Лучшие графические пакеты для Football Manager">
-  <title>FM Graphics Collection by Kirill</title>
+  <meta name="description" content="FM Graphics Collection by OKV - Лучшие графические пакеты для Football Manager">
+  <title>FM Graphics Collection by OKV</title>
   <style>
     :root {
       --primary-color: #2c3e50;
@@ -34,6 +34,7 @@
       --border-color: #eee;
     }
 
+    /* CSS Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -55,7 +56,7 @@
       margin: 0 auto;
     }
 
-    .header-controls {
+    header.header-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -131,16 +132,6 @@
       color: var(--secondary-color);
       text-decoration: none;
       font-weight: 500;
-    }
-
-    .download-counter {
-      font-size: 12px;
-      color: #666;
-      margin-left: 8px;
-    }
-
-    .dark-theme .download-counter {
-      color: #aaa;
     }
 
     .center-bold {
@@ -221,7 +212,7 @@
       body { padding: 10px; }
       section { padding: 15px; }
       table { display: block; overflow-x: auto; }
-      .header-controls { flex-direction: column; }
+      header.header-controls { flex-direction: column; }
       tr.upd td:first-child { padding-left: 50px; }
       .upd-marker { left: 10px; font-size: 14px; }
     }
@@ -229,10 +220,10 @@
 </head>
 <body>
   <div class="container">
-    <div class="header-controls">
-      <div id="visitCounter">Посещений: 0</div>
-      <button id="themeToggleBtn">🌓 Тема</button>
-    </div>
+    <header class="header-controls">
+      <!-- Счётчик посещений удалён -->
+      <button id="themeToggleBtn" aria-label="Переключить тему">🌓 Тема</button>
+    </header>
 
     <main>
       <!-- About Section -->
@@ -251,7 +242,7 @@
       <section id="faces">
         <h2>
           Лица
-          <button data-toggle="facesContent">Показать список</button>
+          <button data-toggle="facesContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="facesContent" class="toggle-content">
           <table>
@@ -275,7 +266,6 @@
                 <td>485,166</td>
                 <td>
                   <a href="https://t.me/OKVFMchat/943" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
                 <td rowspan="2">
                   <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank">
@@ -294,7 +284,6 @@
                 <td>8,074</td>
                 <td>
                   <a href="https://t.me/OKVFMchat/965" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
             </tbody>
@@ -307,7 +296,7 @@
       <section id="logos">
         <h2>
           Логотипы
-          <button data-toggle="logosContent">Показать список</button>
+          <button data-toggle="logosContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="logosContent" class="toggle-content">
           <table>
@@ -331,7 +320,6 @@
                 <td>261,675</td>
                 <td>
                   <a href="https://t.me/OKVFMchat/943" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
                 <td>
                   <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank">
@@ -349,7 +337,7 @@
       <section id="trophies">
         <h2>
           Трофеи
-          <button data-toggle="trophiesContent">Показать список</button>
+          <button data-toggle="trophiesContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="trophiesContent" class="toggle-content">
           <table>
@@ -373,7 +361,6 @@
                 <td>2,002</td>
                 <td>
                   <a href="https://t.me/OKVFMchat/945" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
                 <td rowspan="2">
                   <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank">
@@ -392,7 +379,6 @@
                 <td>88</td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1030" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
             </tbody>
@@ -405,7 +391,7 @@
       <section id="forms">
         <h2>
           Формы
-          <button data-toggle="formsContent">Показать список</button>
+          <button data-toggle="formsContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="formsContent" class="toggle-content">
           <table>
@@ -429,7 +415,6 @@
                 <td>—</td>
                 <td>
                   <a href="https://t.me/OKVFMchat/946" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
                 <td rowspan="3">
                   <a href="https://fmslovakia.com/" target="_blank">
@@ -445,7 +430,6 @@
                 <td>—</td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1174" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
               <tr>
@@ -456,7 +440,6 @@
                 <td>—</td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1396" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
             </tbody>
@@ -464,7 +447,6 @@
           <p class="center-bold">
             ФИКС цвета для ФОРМ – файл нужен для того, чтобы корректно отображались формы, работает только с новой карьерой, поместить в папку editor data.
             <a href="https://t.me/OKVFMchat/293?comment=1236" target="_blank" data-download>Скачать</a>
-            <span class="download-counter"></span>
           </p>
           <p class="upd-note">Файлы UPD ставятся поверх основного пака</p>
         </div>
@@ -474,7 +456,7 @@
       <section id="background">
         <h2>
           Задний фон
-          <button data-toggle="backgroundContent">Показать список</button>
+          <button data-toggle="backgroundContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="backgroundContent" class="toggle-content">
           <table>
@@ -510,7 +492,6 @@
                 </td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
                 <td>
                   <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank">
@@ -528,7 +509,7 @@
       <section id="transfers">
         <h2>
           Трансферы
-          <button data-toggle="transfersContent">Показать список</button>
+          <button data-toggle="transfersContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="transfersContent" class="toggle-content">
           <table>
@@ -549,7 +530,6 @@
                 <td>15 февраля 2025</td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1405" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
               <tr>
@@ -561,7 +541,6 @@
                 <td>23 февраля 2025</td>
                 <td>
                   <a href="https://t.me/kitsforfmbyOKV/293?comment=1404" target="_blank" data-download>Скачать</a>
-                  <span class="download-counter"></span>
                 </td>
               </tr>
             </tbody>
@@ -577,7 +556,7 @@
       <section id="instructions">
         <h2>
           <strong>Инструкция</strong>
-          <button data-toggle="instructionsContent">Показать</button>
+          <button data-toggle="instructionsContent" aria-expanded="false">Показать</button>
         </h2>
         <div id="instructionsContent" class="toggle-content">
           <p style="white-space: pre-wrap; text-align: center;">
@@ -601,7 +580,7 @@
     <button id="scrollTop" title="Наверх">↑</button>
   </div>
 
-  <div id="toastContainer"></div>
+  <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
   <script>
     (function() {
@@ -610,32 +589,12 @@
       class FMGraphicsApp {
         constructor() {
           this.initTheme();
-          this.initCounters();
           this.initEventListeners();
         }
 
         initTheme() {
           const savedTheme = localStorage.getItem('theme') || 'light';
           document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-
-        initCounters() {
-          this.updateVisitCounter();
-          this.initDownloadCounters();
-        }
-
-        updateVisitCounter() {
-          let count = parseInt(localStorage.getItem('visitCount')) || 0;
-          localStorage.setItem('visitCount', ++count);
-          document.getElementById('visitCounter').textContent = `Посещений: ${count}`;
-        }
-
-        initDownloadCounters() {
-          document.querySelectorAll('[data-download]').forEach(link => {
-            const key = `download_${link.href}`;
-            const count = localStorage.getItem(key) || 0;
-            link.nextElementSibling.textContent = `(${count})`;
-          });
         }
 
         initEventListeners() {
@@ -654,23 +613,22 @@
         }
 
         handleClick(e) {
-          if (e.target.closest('[data-download]')) this.handleDownload(e.target.closest('[data-download]'));
-          if (e.target.closest('[data-toggle]')) this.toggleSection(e.target.closest('button'));
-        }
-
-        handleDownload(link) {
-          const key = `download_${link.href}`;
-          let count = parseInt(localStorage.getItem(key)) || 0;
-          localStorage.setItem(key, ++count);
-          link.nextElementSibling.textContent = `(${count})`;
-          this.showToast('Счётчик скачиваний обновлён');
+          // Если клик произошёл по ссылке для скачивания, не обрабатываем событие,
+          // чтобы ссылка работала стандартно.
+          if (e.target.closest('[data-download]')) {
+            return;
+          }
+          const toggleBtn = e.target.closest('[data-toggle]');
+          if (toggleBtn) {
+            this.toggleSection(toggleBtn);
+          }
         }
 
         toggleSection(btn) {
           const contentId = btn.getAttribute('data-toggle');
           const content = document.getElementById(contentId);
           const isOpen = content.classList.toggle('open');
-          btn.textContent = isOpen ? 'Скрыть список' : 'Показать список';
+          btn.textContent = isOpen ? 'Скрыть' : 'Показать';
           btn.setAttribute('aria-expanded', isOpen);
         }
 
