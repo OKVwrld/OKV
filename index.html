@@ -583,19 +583,10 @@
     }
 
     /* Добавляем стили для новых функций */
-    .search-container {
+    .search-container, .search-input, .search-icon {
       display: none;
     }
 
-    .search-input {
-      display: none;
-    }
-
-    .search-icon {
-      display: none;
-    }
-
-    .counters {
       position: fixed;
       left: 20px;
       bottom: 100px;
@@ -611,11 +602,9 @@
       transform: translateX(0);
     }
 
-    .counters.collapsed {
       transform: translateX(-100%);
     }
 
-    .counter-toggle {
       position: absolute;
       right: -30px;
       top: 50%;
@@ -628,19 +617,16 @@
       box-shadow: var(--shadow);
     }
 
-    .counter-item {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 5px 0;
     }
 
-    .counter-icon {
       font-size: 1.2rem;
       color: var(--secondary-color);
     }
 
-    .counter-value {
       font-weight: bold;
       color: var(--text-color);
       font-size: 1.1rem;
@@ -696,7 +682,6 @@
     }
 
     @media (max-width: 768px) {
-      .counters.collapsed {
         transform: translateX(-90%);
       }
       
@@ -1568,47 +1553,6 @@
           }
         };
       };
-
-      // Функция для анимации счетчика
-      function animateCounter(element, targetValue) {
-        let current = 0;
-        const increment = targetValue / 100;
-        const interval = setInterval(() => {
-          current += increment;
-          if (current >= targetValue) {
-            current = targetValue;
-            clearInterval(interval);
-          }
-          element.textContent = Math.floor(current).toLocaleString();
-        }, 20);
-      }
-
-      // Инициализация счетчиков
-      function initCounters() {
-        const visitsCounter = document.getElementById('visitsCounter');
-        const downloadsCounter = document.getElementById('downloadsCounter');
-        
-        // Получаем сохраненные значения или устанавливаем начальные
-        let visits = parseInt(localStorage.getItem('visits')) || 15783;
-        let downloads = parseInt(localStorage.getItem('downloads')) || 8945;
-        
-        // Увеличиваем счетчик посещений
-        visits++;
-        localStorage.setItem('visits', visits);
-        
-        // Анимируем счетчики
-        animateCounter(visitsCounter, visits);
-        animateCounter(downloadsCounter, downloads);
-        
-        // Обработчик для кнопок загрузки
-        document.querySelectorAll('a[href*="download"]').forEach(link => {
-          link.addEventListener('click', () => {
-            downloads++;
-            localStorage.setItem('downloads', downloads);
-            animateCounter(downloadsCounter, downloads);
-          });
-        });
-      }
 
       class FMGraphicsApp {
         constructor() {
