@@ -40,6 +40,8 @@
       --border-color: #eee;
       --card-bg: #ffffff;
       --input-bg: #f5f5f5;
+      --heading-color: #1a1a1a;
+      --social-link-color: #1a1a1a;
     }
 
     * {
@@ -56,13 +58,31 @@
       background-color: var(--background);
       color: var(--text-color);
       transition: background-color var(--transition-speed), color var(--transition-speed);
-      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%233498db" fill-opacity="0.05" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"%3E%3C/path%3E%3C/svg%3E');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('https://static.mk.ru/upload/entities/2021/12/02/12/articles/detailPicture/32/8c/a8/e1/f1a7f2d6d8b5e40e4d04d3b5e9a4df3f.jpg');
       background-repeat: no-repeat;
-      background-size: 100%;
+      background-size: cover;
       background-attachment: fixed;
+      background-position: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .container {
+      position: relative;
+      z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -90,6 +110,9 @@
       box-shadow: var(--shadow);
       transition: all var(--transition-speed);
       border-left: 4px solid var(--secondary-color);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeIn 0.6s ease-out forwards;
     }
 
     h1, h2 {
@@ -105,6 +128,7 @@
     h1 {
       font-size: 2rem;
       position: relative;
+      color: var(--heading-color);
     }
 
     h1::after {
@@ -123,22 +147,39 @@
     }
 
     button {
-      padding: 8px 16px;
+      padding: 10px 20px;
       font-size: 0.95rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all var(--transition-speed);
-      background-color: var(--secondary-color);
+      background: linear-gradient(135deg, var(--secondary-color), #2980b9);
       color: white;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      position: relative;
+      overflow: hidden;
     }
 
-    button:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
     }
 
     button:active {
@@ -297,12 +338,18 @@
       border: 5px solid var(--border-color);
       border-top: 5px solid var(--secondary-color);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
     }
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
     }
 
     /* Карточки для мобильных устройств */
@@ -318,11 +365,15 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: var(--card-shadow);
-      transition: transform var(--transition-speed);
+      transition: all var(--transition-speed);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
     .card-title {
@@ -403,27 +454,30 @@
 
     /* Фильтры категорий */
     .category-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-      justify-content: flex-start;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .category-filter {
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
       cursor: pointer;
       transition: all var(--transition-speed);
-      background-color: var(--hover-bg);
+      background: rgba(255, 255, 255, 0.1);
       color: var(--text-color);
-      border: 1px solid var(--border-color);
-      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.95rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .category-filter:hover {
-      background-color: var(--secondary-color);
+      background: var(--secondary-color);
       color: white;
+      transform: translateY(-2px);
     }
 
     .category-filter.active {
@@ -497,6 +551,171 @@
         display: table;
       }
     }
+
+    /* Добавляем новые анимации */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Улучшенный скроллбар */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--secondary-color);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2980b9;
+    }
+
+    /* Добавляем эффект свечения для активных элементов */
+    .card:hover, button:hover, .category-filter:hover {
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+    }
+
+    /* Добавляем стили для новых функций */
+    .search-container {
+      display: none;
+    }
+
+    .search-input {
+      display: none;
+    }
+
+    .search-icon {
+      display: none;
+    }
+
+    .counters {
+      position: fixed;
+      left: 20px;
+      bottom: 100px;
+      z-index: 1000;
+      background: var(--section-bg);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-speed);
+      transform: translateX(0);
+    }
+
+    .counters.collapsed {
+      transform: translateX(-100%);
+    }
+
+    .counter-toggle {
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--section-bg);
+      border: none;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      padding: 8px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .counter-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 5px 0;
+    }
+
+    .counter-icon {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+    }
+
+    .counter-value {
+      font-weight: bold;
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+
+    .feedback-form {
+      position: fixed;
+      right: 20px;
+      bottom: 100px;
+      z-index: 1000;
+      background: var(--section-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-speed);
+      transform: translateX(0);
+    }
+
+    .feedback-form.collapsed {
+      transform: translateX(100%);
+    }
+
+    .feedback-toggle {
+      position: absolute;
+      left: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--section-bg);
+      border: none;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      padding: 8px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .feedback-button {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #0088cc, #005580);
+      transition: transform 0.3s ease;
+    }
+
+    .feedback-button:hover {
+      transform: scale(1.05);
+    }
+
+    .feedback-button i {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .counters.collapsed {
+        transform: translateX(-90%);
+      }
+      
+      .feedback-form.collapsed {
+        transform: translateX(90%);
+      }
+    }
+
+    [data-theme="light"] h1 {
+      color: var(--heading-color);
+    }
+
+    [data-theme="light"] .share-menu a {
+      color: var(--social-link-color);
+    }
+
+    [data-theme="light"] .center-bold a {
+      color: var(--social-link-color);
+    }
   </style>
 </head>
 <body>
@@ -505,8 +724,52 @@
     <div class="spinner"></div>
   </div>
 
-  <!-- Ссылка для пропуска навигации -->
-  <a href="#main-content" class="skip-link">Перейти к содержимому</a>
+  <!-- Уведомления -->
+  <div class="notification" id="notification">
+    <i class="fas fa-bell"></i>
+    <span id="notification-text"></span>
+  </div>
+
+  <!-- Счетчики -->
+  <div class="counters" id="counters">
+    <button class="counter-toggle" id="counterToggle" aria-label="Свернуть счетчики">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="counter-item">
+      <i class="fas fa-eye counter-icon"></i>
+      <span class="counter-value" id="visitsCounter">0</span> просмотров
+    </div>
+    <div class="counter-item">
+      <i class="fas fa-download counter-icon"></i>
+      <span class="counter-value" id="downloadsCounter">0</span> загрузок
+    </div>
+  </div>
+
+  <!-- Форма обратной связи -->
+  <div class="feedback-form" id="feedbackForm">
+    <button class="feedback-toggle" id="feedbackToggle" aria-label="Свернуть форму обратной связи">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="feedback-content">
+      <h3>Обратная связь</h3>
+      <p class="center-bold">
+        <a href="https://t.me/kingOKV" target="_blank" rel="noopener noreferrer">
+          <button class="feedback-button">
+            <i class="fab fa-telegram"></i> Написать в Telegram
+          </button>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Кнопка "Поделиться" -->
+  <div class="share-button">
+    <button id="shareBtn"><i class="fas fa-share-alt"></i></button>
+    <div class="share-menu" id="shareMenu">
+      <a href="#" onclick="share('telegram')"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="#" onclick="share('vk')"><i class="fab fa-vk"></i> VKontakte</a>
+    </div>
+  </div>
 
   <div class="container">
     <header class="header-controls">
@@ -526,6 +789,7 @@
       <button class="category-filter" data-category="forms">Формы</button>
       <button class="category-filter" data-category="background">Задний фон</button>
       <button class="category-filter" data-category="transfers">Трансферы</button>
+      <button class="category-filter" data-category="instructions">Инструкция</button>
     </div>
 
     <main id="main-content">
@@ -1170,15 +1434,56 @@
         };
       };
 
+      // Функция для анимации счетчика
+      function animateCounter(element, targetValue) {
+        let current = 0;
+        const increment = targetValue / 100;
+        const interval = setInterval(() => {
+          current += increment;
+          if (current >= targetValue) {
+            current = targetValue;
+            clearInterval(interval);
+          }
+          element.textContent = Math.floor(current).toLocaleString();
+        }, 20);
+      }
+
+      // Инициализация счетчиков
+      function initCounters() {
+        const visitsCounter = document.getElementById('visitsCounter');
+        const downloadsCounter = document.getElementById('downloadsCounter');
+        
+        // Получаем сохраненные значения или устанавливаем начальные
+        let visits = parseInt(localStorage.getItem('visits')) || 15783;
+        let downloads = parseInt(localStorage.getItem('downloads')) || 8945;
+        
+        // Увеличиваем счетчик посещений
+        visits++;
+        localStorage.setItem('visits', visits);
+        
+        // Анимируем счетчики
+        animateCounter(visitsCounter, visits);
+        animateCounter(downloadsCounter, downloads);
+        
+        // Обработчик для кнопок загрузки
+        document.querySelectorAll('a[href*="download"]').forEach(link => {
+          link.addEventListener('click', () => {
+            downloads++;
+            localStorage.setItem('downloads', downloads);
+            animateCounter(downloadsCounter, downloads);
+          });
+        });
+      }
+
       class FMGraphicsApp {
         constructor() {
           this.initTheme();
           this.updateThemeIcon(document.documentElement.getAttribute('data-theme'));
           this.initEventListeners();
-          this.setupSearch();
-          this.setupCategoryFilters();
           this.hidePreloader();
           this.updateLastModified();
+          this.initCategoryFilters();
+          initCounters(); // Добавляем инициализацию счетчиков
         }
 
         initTheme() {
@@ -1267,80 +1572,6 @@
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        setupSearch() {
-          const searchInput = document.getElementById('tableSearch');
-          if (searchInput) {
-            searchInput.addEventListener('input', () => this.filterTables(searchInput.value.toLowerCase()));
-          }
-        }
-
-        filterTables(searchTerm) {
-          // Фильтрация таблиц
-          document.querySelectorAll('table tbody tr').forEach(row => {
-            const text = row.textContent.toLowerCase();
-            const isMatch = text.includes(searchTerm);
-            row.classList.toggle('hidden', !isMatch);
-          });
-
-          // Фильтрация карточек
-          document.querySelectorAll('.card').forEach(card => {
-            const text = card.textContent.toLowerCase();
-            const isMatch = text.includes(searchTerm);
-            card.style.display = isMatch ? 'block' : 'none';
-          });
-
-          // Показываем разделы, в которых есть совпадения
-          document.querySelectorAll('section').forEach(section => {
-            const hasMatchInTable = section.querySelectorAll('table tbody tr:not(.hidden)').length > 0;
-            const hasMatchInCards = Array.from(section.querySelectorAll('.card')).some(card => card.style.display !== 'none');
-            
-            if (hasMatchInTable || hasMatchInCards) {
-              const contentId = section.querySelector('[data-toggle]')?.getAttribute('data-toggle');
-              if (contentId) {
-                const content = document.getElementById(contentId);
-                const toggleBtn = section.querySelector(`[data-toggle="${contentId}"]`);
-                
-                if (content && !content.classList.contains('open') && searchTerm) {
-                  content.classList.add('open');
-                  if (toggleBtn) {
-                    const icon = toggleBtn.querySelector('i');
-                    if (icon) icon.className = 'fas fa-chevron-up';
-                    toggleBtn.innerHTML = `<i class="fas fa-chevron-up"></i> Скрыть`;
-                    toggleBtn.setAttribute('aria-expanded', 'true');
-                  }
-                }
-              }
-            }
-          });
-        }
-
-        setupCategoryFilters() {
-          const filterButtons = document.querySelectorAll('.category-filter');
-          filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-              // Удаляем активный класс со всех кнопок
-              filterButtons.forEach(btn => btn.classList.remove('active'));
-              
-              // Добавляем активный класс на нажатую кнопку
-              button.classList.add('active');
-              
-              // Фильтруем секции
-              const category = button.getAttribute('data-category');
-              this.filterSectionsByCategory(category);
-            });
-          });
-        }
-
-        filterSectionsByCategory(category) {
-          document.querySelectorAll('section[data-category]').forEach(section => {
-            if (category === 'all' || section.getAttribute('data-category') === category) {
-              section.style.display = 'block';
-            } else {
-              section.style.display = 'none';
-            }
-          });
-        }
-
         hidePreloader() {
           const preloader = document.getElementById('preloader');
           if (preloader) {
@@ -1362,11 +1593,137 @@
             }, 3000);
           }
         }
+
+        initCategoryFilters() {
+          const filterButtons = document.querySelectorAll('.category-filter');
+          
+          filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+              // Убираем активный класс у всех кнопок
+              filterButtons.forEach(btn => btn.classList.remove('active'));
+              
+              // Добавляем активный класс нажатой кнопке
+              button.classList.add('active');
+              
+              const category = button.getAttribute('data-category');
+              
+              if (category === 'all') {
+                // Показываем все секции
+                document.querySelectorAll('section[data-category]').forEach(section => {
+                  section.style.display = 'block';
+                });
+              } else {
+                // Находим соответствующую секцию и прокручиваем к ней
+                const targetSection = document.querySelector(`section[data-category="${category}"]`);
+                if (targetSection) {
+                  // Плавно прокручиваем к секции
+                  targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  
+                  // Автоматически открываем содержимое секции
+                  const toggleButton = targetSection.querySelector('[data-toggle]');
+                  const contentId = toggleButton.getAttribute('data-toggle');
+                  const content = document.getElementById(contentId);
+                  
+                  if (!content.classList.contains('open')) {
+                    this.toggleSection(toggleButton);
+                  }
+                }
+              }
+            });
+          });
+        }
       }
 
       // Инициализация приложения
       document.addEventListener('DOMContentLoaded', () => {
         const app = new FMGraphicsApp();
+
+        // Обработка кнопки "Поделиться"
+        const shareBtn = document.getElementById('shareBtn');
+        const shareMenu = document.getElementById('shareMenu');
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', (e) => {
+          if (!shareBtn.contains(e.target) && !shareMenu.contains(e.target)) {
+            shareMenu.classList.remove('show');
+          }
+        });
+
+        // Открытие/закрытие меню при клике на кнопку
+        shareBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          shareMenu.classList.toggle('show');
+        });
+
+        // Функция для шаринга
+        window.share = function(platform) {
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent('FM Graphics Collection by OKV - Лучшие графические пакеты для Football Manager');
+          const description = encodeURIComponent('Коллекция графических пакетов для Football Manager: лица, логотипы, формы и многое другое.');
+          let shareUrl;
+
+          switch(platform) {
+            case 'telegram':
+              shareUrl = `https://t.me/share/url?url=${url}&text=${title}%0A${description}`;
+              break;
+            case 'vk':
+              shareUrl = `https://vk.com/share.php?url=${url}&title=${title}&description=${description}`;
+              break;
+          }
+
+          // Открываем окно шаринга
+          const width = 600;
+          const height = 400;
+          const left = (window.innerWidth - width) / 2;
+          const top = (window.innerHeight - height) / 2;
+          
+          window.open(
+            shareUrl,
+            'share',
+            `width=${width},height=${height},left=${left},top=${top},location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1`
+          );
+
+          // Закрываем меню после шаринга
+          shareMenu.classList.remove('show');
+
+          // Показываем уведомление
+          const notification = document.getElementById('notification');
+          const notificationText = document.getElementById('notification-text');
+          notificationText.textContent = 'Спасибо, что поделились!';
+          notification.classList.add('show');
+          setTimeout(() => notification.classList.remove('show'), 3000);
+        };
+
+        // Добавляем анимацию для кнопки
+        shareBtn.addEventListener('mouseover', () => {
+          shareBtn.querySelector('i').classList.add('fa-bounce');
+        });
+
+        shareBtn.addEventListener('mouseout', () => {
+          shareBtn.querySelector('i').classList.remove('fa-bounce');
+        });
+
+        // Обработка сворачивания счетчиков
+        const counterToggle = document.getElementById('counterToggle');
+        const counters = document.getElementById('counters');
+        
+        counterToggle.addEventListener('click', () => {
+          counters.classList.toggle('collapsed');
+          const icon = counterToggle.querySelector('i');
+          icon.classList.toggle('fa-chevron-left');
+          icon.classList.toggle('fa-chevron-right');
+        });
+
+        // Обработка сворачивания формы обратной связи
+        const feedbackToggle = document.getElementById('feedbackToggle');
+        const feedbackForm = document.getElementById('feedbackForm');
+        
+        feedbackToggle.addEventListener('click', () => {
+          feedbackForm.classList.toggle('collapsed');
+          const icon = feedbackToggle.querySelector('i');
+          icon.classList.toggle('fa-chevron-right');
+          icon.classList.toggle('fa-chevron-left');
+        });
       });
     })();
   </script>
