@@ -716,6 +716,87 @@
     [data-theme="light"] .center-bold a {
       color: var(--social-link-color);
     }
+
+    /* Стили для кнопки "Поделиться" */
+    .share-button {
+      position: fixed;
+      right: 20px;
+      bottom: 100px;
+      z-index: 1000;
+    }
+
+    .share-menu {
+      position: absolute;
+      right: 0;
+      bottom: 100%;
+      background: var(--section-bg);
+      border-radius: var(--border-radius);
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+      display: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .share-menu.show {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .share-menu a {
+      display: flex;
+      align-items: center;
+      padding: 8px 15px;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all var(--transition-speed);
+      border-radius: 5px;
+    }
+
+    .share-menu a:hover {
+      background: var(--hover-bg);
+      transform: translateX(5px);
+    }
+
+    .share-menu a i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    #shareBtn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+      color: white;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      box-shadow: var(--shadow);
+    }
+
+    #shareBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .share-button {
+        right: 10px;
+        bottom: 80px;
+      }
+      
+      .share-menu {
+        right: 0;
+        width: auto;
+        min-width: 200px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -728,21 +809,6 @@
   <div class="notification" id="notification">
     <i class="fas fa-bell"></i>
     <span id="notification-text"></span>
-  </div>
-
-  <!-- Счетчики -->
-  <div class="counters" id="counters">
-    <button class="counter-toggle" id="counterToggle" aria-label="Свернуть счетчики">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <div class="counter-item">
-      <i class="fas fa-eye counter-icon"></i>
-      <span class="counter-value" id="visitsCounter">0</span> просмотров
-    </div>
-    <div class="counter-item">
-      <i class="fas fa-download counter-icon"></i>
-      <span class="counter-value" id="downloadsCounter">0</span> загрузок
-    </div>
   </div>
 
   <!-- Форма обратной связи -->
@@ -764,7 +830,7 @@
 
   <!-- Кнопка "Поделиться" -->
   <div class="share-button">
-    <button id="shareBtn"><i class="fas fa-share-alt"></i></button>
+    <button id="shareBtn" aria-label="Поделиться"><i class="fas fa-share-alt"></i></button>
     <div class="share-menu" id="shareMenu">
       <a href="#" onclick="share('telegram')"><i class="fab fa-telegram"></i> Telegram</a>
       <a href="#" onclick="share('vk')"><i class="fab fa-vk"></i> VKontakte</a>
@@ -922,11 +988,47 @@
                 <td>5 Гб</td>
                 <td>261,675</td>
                 <td><a href="https://t.me/OKVFMchat/944" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td>
+                <td rowspan="2">
                   <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer">
                     <button><i class="fas fa-external-link-alt"></i> Перейти</button>
                   </a>
                 </td>
+              </tr>
+              <tr class="upd">
+                <td>
+                  <span class="upd-marker">UPD</span>
+                  FMG Standard
+                </td>
+                <td>2025.05</td>
+                <td>4 марта 2025</td>
+                <td>50 Мб</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1567" target="_blank" rel="noopener noreferrer">Скачать</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Таблица с флагами -->
+          <table>
+            <caption>Флаги для Football Manager</caption>
+            <thead>
+              <tr>
+                <th>Стиль</th>
+                <th>Версия</th>
+                <th>Дата выхода</th>
+                <th>Размер файла</th>
+                <th>Количество изображений</th>
+                <th>Ссылка на загрузку</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Флаги</td>
+                <td>2025.01</td>
+                <td>5 марта 2025</td>
+                <td>75 Мб</td>
+                <td>—</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1568" target="_blank" rel="noopener noreferrer">Скачать</a></td>
               </tr>
             </tbody>
           </table>
@@ -939,7 +1041,7 @@
               </div>
               <div class="card-content">
                 <div class="card-label">Дата выхода:</div>
-                <div class="card-value">6 января 2025</div>
+                <div class="card-value">6 февраля 2025</div>
                 <div class="card-label">Размер файла:</div>
                 <div class="card-value">5 Гб</div>
                 <div class="card-label">Изображений:</div>
@@ -948,6 +1050,39 @@
               <div class="card-actions">
                 <a href="https://t.me/OKVFMchat/943" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
                 <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                FMG Standard <span class="upd-marker">UPD</span> <span>2025.05</span>
+              </div>
+              <div class="card-content">
+                <div class="card-label">Дата выхода:</div>
+                <div class="card-value">4 марта 2025</div>
+                <div class="card-label">Размер файла:</div>
+                <div class="card-value">50 Мб</div>
+                <div class="card-label">Изображений:</div>
+                <div class="card-value">—</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://t.me/kitsforfmbyOKV/293?comment=1567" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
+                <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                Флаги <span>2025.01</span>
+              </div>
+              <div class="card-content">
+                <div class="card-label">Дата выхода:</div>
+                <div class="card-value">5 марта 2025</div>
+                <div class="card-label">Размер файла:</div>
+                <div class="card-value">75 Мб</div>
+                <div class="card-label">Изображений:</div>
+                <div class="card-value">—</div>
+              </div>
+              <div class="card-actions">
+                <a href="https://t.me/kitsforfmbyOKV/293?comment=1568" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
               </div>
             </div>
           </div>
@@ -1483,7 +1618,6 @@
           this.hidePreloader();
           this.updateLastModified();
           this.initCategoryFilters();
-          initCounters(); // Добавляем инициализацию счетчиков
         }
 
         initTheme() {
@@ -1701,17 +1835,6 @@
 
         shareBtn.addEventListener('mouseout', () => {
           shareBtn.querySelector('i').classList.remove('fa-bounce');
-        });
-
-        // Обработка сворачивания счетчиков
-        const counterToggle = document.getElementById('counterToggle');
-        const counters = document.getElementById('counters');
-        
-        counterToggle.addEventListener('click', () => {
-          counters.classList.toggle('collapsed');
-          const icon = counterToggle.querySelector('i');
-          icon.classList.toggle('fa-chevron-left');
-          icon.classList.toggle('fa-chevron-right');
         });
 
         // Обработка сворачивания формы обратной связи
