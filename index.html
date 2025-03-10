@@ -587,51 +587,6 @@
       display: none;
     }
 
-      position: fixed;
-      left: 20px;
-      bottom: 100px;
-      z-index: 1000;
-      background: var(--section-bg);
-      border-radius: var(--border-radius);
-      padding: 15px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all var(--transition-speed);
-      transform: translateX(0);
-    }
-
-      transform: translateX(-100%);
-    }
-
-      position: absolute;
-      right: -30px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--section-bg);
-      border: none;
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
-      padding: 8px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-    }
-
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 5px 0;
-    }
-
-      font-size: 1.2rem;
-      color: var(--secondary-color);
-    }
-
-      font-weight: bold;
-      color: var(--text-color);
-      font-size: 1.1rem;
-    }
-
     .feedback-form {
       position: fixed;
       right: 20px;
@@ -682,9 +637,6 @@
     }
 
     @media (max-width: 768px) {
-        transform: translateX(-90%);
-      }
-      
       .feedback-form.collapsed {
         transform: translateX(90%);
       }
@@ -1735,41 +1687,17 @@
 
         // Функция для шаринга
         window.share = function(platform) {
-          const url = encodeURIComponent(window.location.href);
-          const title = encodeURIComponent('FM Graphics Collection by OKV - Лучшие графические пакеты для Football Manager');
-          const description = encodeURIComponent('Коллекция графических пакетов для Football Manager: лица, логотипы, формы и многое другое.');
-          let shareUrl;
-
-          switch(platform) {
-            case 'telegram':
-              shareUrl = `https://t.me/share/url?url=${url}&text=${title}%0A${description}`;
-              break;
-            case 'vk':
-              shareUrl = `https://vk.com/share.php?url=${url}&title=${title}&description=${description}`;
-              break;
+          const url = 'https://okvwrld.github.io/OKV/';
+          const encodedUrl = encodeURIComponent(url);
+          
+          if (platform === 'telegram') {
+            window.open(`https://t.me/share/url?url=${encodedUrl}`, '_blank');
+          } else if (platform === 'vk') {
+            window.open(`https://vk.com/share.php?url=${encodedUrl}`, '_blank');
           }
 
-          // Открываем окно шаринга
-          const width = 600;
-          const height = 400;
-          const left = (window.innerWidth - width) / 2;
-          const top = (window.innerHeight - height) / 2;
-          
-          window.open(
-            shareUrl,
-            'share',
-            `width=${width},height=${height},left=${left},top=${top},location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1`
-          );
-
-          // Закрываем меню после шаринга
+          // Закрываем меню после открытия окна шаринга
           shareMenu.classList.remove('show');
-
-          // Показываем уведомление
-          const notification = document.getElementById('notification');
-          const notificationText = document.getElementById('notification-text');
-          notificationText.textContent = 'Спасибо, что поделились!';
-          notification.classList.add('show');
-          setTimeout(() => notification.classList.remove('show'), 3000);
         };
 
         // Добавляем анимацию для кнопки
