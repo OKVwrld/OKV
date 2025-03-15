@@ -9,39 +9,40 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --accent-color: #e74c3c;
-      --background-light: #f8f9fa;
-      --text-light: #333333;
-      --background-dark: #121212;
-      --text-dark: #e0e0e0;
+      --primary-color: #2D1E5F; /* Темно-фиолетовый основной цвет FM 2024 */
+      --secondary-color: #FF6B00; /* Оранжевый акцентный цвет FM 2024 */
+      --accent-color: #FF6B00; /* Оранжевый акцентный цвет FM 2024 */
+      --background-light: #F5F5F5; /* Светлый фон */
+      --text-light: #333333; /* Темный текст для светлой темы */
+      --background-dark: #1E1441; /* Темно-фиолетовый фон */
+      --text-dark: #FFFFFF; /* Светлый текст для темной темы */
       --transition-speed: 0.3s;
-      --border-radius: 12px;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      --border-radius: 8px; /* Более мягкие углы, как в FM 2024 */
+      --shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Мягкие тени */
     }
 
     [data-theme="dark"] {
       --background: var(--background-dark);
       --text-color: var(--text-dark);
-      --section-bg: rgba(30, 30, 30, 0.95);
-      --hover-bg: #2a2a2a;
-      --border-color: #333;
-      --card-bg: #1e1e1e;
-      --input-bg: #2a2a2a;
+      --section-bg: rgba(30, 20, 65, 0.95); /* Темно-фиолетовый фон секций */
+      --hover-bg: #352670; /* Цвет при наведении */
+      --border-color: #4A3A8C; /* Цвет границ */
+      --input-bg: #2D1E5F; /* Фон полей ввода */
+      --table-header-bg: #2D1E5F; /* Фон заголовков таблиц */
+      --table-header-color: #FF6B00; /* Цвет текста заголовков */
     }
 
     [data-theme="light"] {
       --background: var(--background-light);
       --text-color: var(--text-light);
-      --section-bg: rgba(255, 255, 255, 0.95);
-      --hover-bg: #f5f5f5;
-      --border-color: #eee;
-      --card-bg: #ffffff;
-      --input-bg: #f5f5f5;
-      --heading-color: #1a1a1a;
-      --social-link-color: #1a1a1a;
+      --section-bg: #FFFFFF; /* Белый фон секций */
+      --hover-bg: #F0F0F0; /* Цвет при наведении */
+      --border-color: #E0E0E0; /* Цвет границ */
+      --input-bg: #F5F5F5; /* Фон полей ввода */
+      --heading-color: #2D1E5F; /* Цвет заголовков */
+      --social-link-color: #2D1E5F; /* Цвет ссылок */
+      --table-header-bg: #2D1E5F; /* Фиолетовый фон заголовков */
+      --table-header-color: #FFFFFF; /* Белый текст заголовков */
     }
 
     * {
@@ -58,7 +59,7 @@
       background-color: var(--background);
       color: var(--text-color);
       transition: background-color var(--transition-speed), color var(--transition-speed);
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      background-image: linear-gradient(rgba(30, 20, 65, 0.7), rgba(30, 20, 65, 0.7)),
         url('https://static.mk.ru/upload/entities/2021/12/02/12/articles/detailPicture/32/8c/a8/e1/f1a7f2d6d8b5e40e4d04d3b5e9a4df3f.jpg');
       background-repeat: no-repeat;
       background-size: cover;
@@ -153,7 +154,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all var(--transition-speed);
-      background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+      background: linear-gradient(135deg, var(--secondary-color), #FF4500);
       color: white;
       display: inline-flex;
       align-items: center;
@@ -212,8 +213,8 @@
     }
 
     th {
-      background-color: var(--secondary-color);
-      color: white;
+      background-color: var(--table-header-bg);
+      color: var(--table-header-color);
       font-weight: 600;
       position: sticky;
       top: 0;
@@ -352,141 +353,12 @@
       100% { transform: scale(1) rotate(360deg); }
     }
 
-    /* Карточки для мобильных устройств */
+    /* Удаляем стили для карточек мобильных устройств */
     .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      margin: 20px 0;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: var(--card-shadow);
-      transition: all var(--transition-speed);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-title {
-      background: var(--secondary-color);
-      color: white;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .card-content {
-      padding: 15px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .card-label {
-      font-weight: bold;
-      color: var(--secondary-color);
-    }
-
-    .card-value {
-      text-align: right;
-    }
-
-    .card-actions {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px;
-      background: var(--hover-bg);
-    }
-
-    .card-actions a {
-      padding: 8px 12px;
-      background: var(--secondary-color);
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all var(--transition-speed);
-    }
-
-    .card-actions a:hover {
-      background: var(--accent-color);
-      transform: translateY(-2px);
-    }
-
-    /* Скрытые элементы */
-    tr.hidden {
       display: none;
     }
 
-    /* Ссылка для пропуска навигации */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--secondary-color);
-      color: white;
-      padding: 8px;
-      z-index: 100;
-      transition: top 0.3s;
-    }
-
-    .skip-link:focus {
-      top: 0;
-    }
-
-    /* Последнее обновление */
-    .last-updated {
-      font-size: 0.9rem;
-      color: var(--text-color);
-      opacity: 0.8;
-    }
-
-    /* Фильтры категорий */
-    .category-filters {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .category-filter {
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all var(--transition-speed);
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-color);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 0.95rem;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-    }
-
-    .category-filter:hover {
-      background: var(--secondary-color);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .category-filter.active {
-      background-color: var(--secondary-color);
-      color: white;
-      font-weight: 500;
-    }
-
-    /* Адаптивность */
+    /* Удаляем медиа-запросы для мобильных устройств */
     @media (max-width: 768px) {
       body { 
         padding: 10px; 
@@ -500,53 +372,23 @@
         display: none; 
       }
       
-      .cards-container {
-        display: grid;
+      .feedback-form.collapsed {
+        transform: translateY(-90%);
       }
       
-      .header-controls { 
-        flex-direction: column; 
-        align-items: flex-start;
+      .share-button {
+        right: 10px;
+        bottom: 80px;
       }
       
-      .header-right {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
-      tr.upd td:first-child { 
-        padding-left: 50px; 
-      }
-      
-      .upd-marker { 
-        left: 10px; 
-        font-size: 14px; 
-      }
-      
-      h2 {
-        flex-wrap: wrap;
-        font-size: 1.3rem;
-      }
-      
-      h2 button {
-        margin-top: 10px;
-      }
-      
-      .toggle-content.open {
-        max-height: calc(100vh - 150px);
-        overflow-y: auto;
-      }
-      
-      .category-filters {
-        justify-content: center;
+      .share-menu {
+        right: 0;
+        width: auto;
+        min-width: 200px;
       }
     }
 
     @media (min-width: 769px) {
-      .cards-container {
-        display: none;
-      }
-      
       table {
         display: table;
       }
@@ -590,7 +432,7 @@
     .feedback-form {
       position: fixed;
       right: 20px;
-      bottom: 100px;
+      top: 20px;
       z-index: 1000;
       background: var(--section-bg);
       border-radius: var(--border-radius);
@@ -604,7 +446,7 @@
     }
 
     .feedback-form.collapsed {
-      transform: translateX(100%);
+      transform: translateY(-100%);
     }
 
     .feedback-toggle {
@@ -623,7 +465,7 @@
     .feedback-button {
       padding: 15px 30px;
       font-size: 1.1rem;
-      background: linear-gradient(135deg, #0088cc, #005580);
+      background: linear-gradient(135deg, #FF6B00, #FF4500);
       transition: transform 0.3s ease;
     }
 
@@ -634,12 +476,6 @@
     .feedback-button i {
       font-size: 1.2rem;
       margin-right: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .feedback-form.collapsed {
-        transform: translateX(90%);
-      }
     }
 
     [data-theme="light"] h1 {
@@ -722,56 +558,69 @@
       box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
     }
 
-    @media (max-width: 768px) {
-      .share-button {
-        right: 10px;
-        bottom: 80px;
-      }
-      
-      .share-menu {
-        right: 0;
-        width: auto;
-        min-width: 200px;
-      }
+    /* Скрытые элементы */
+    tr.hidden {
+      display: none;
+    }
+
+    /* Последнее обновление */
+    .last-updated {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Фильтры категорий */
+    .category-filters {
+      background: rgba(45, 30, 95, 0.2);
+      padding: 15px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .category-filter {
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      background: rgba(45, 30, 95, 0.3);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.95rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .category-filter:hover {
+      background: var(--secondary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .category-filter.active {
+      background-color: var(--secondary-color);
+      color: white;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <!-- Прелоадер -->
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
+  <!-- Добавляем кнопку "Наверх" -->
+  <button id="scrollTop" title="Наверх" aria-hidden="true"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- Уведомления -->
-  <div class="notification" id="notification">
-    <i class="fas fa-bell"></i>
-    <span id="notification-text"></span>
-  </div>
-
-  <!-- Форма обратной связи -->
-  <div class="feedback-form" id="feedbackForm">
-    <button class="feedback-toggle" id="feedbackToggle" aria-label="Свернуть форму обратной связи">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-    <div class="feedback-content">
-      <h3>Обратная связь</h3>
-      <p class="center-bold">
-        <a href="https://t.me/kingOKV" target="_blank" rel="noopener noreferrer">
-          <button class="feedback-button">
-            <i class="fab fa-telegram"></i> Написать в Telegram
-          </button>
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <!-- Кнопка "Поделиться" -->
+  <!-- Добавляем кнопку "Поделиться" -->
   <div class="share-button">
     <button id="shareBtn" aria-label="Поделиться"><i class="fas fa-share-alt"></i></button>
     <div class="share-menu" id="shareMenu">
       <a href="#" onclick="share('telegram')"><i class="fab fa-telegram"></i> Telegram</a>
       <a href="#" onclick="share('vk')"><i class="fab fa-vk"></i> VKontakte</a>
     </div>
+  </div>
+
+  <!-- Добавляем прелоадер -->
+  <div id="preloader">
+    <div class="spinner"></div>
   </div>
 
   <div class="container">
@@ -807,6 +656,24 @@
           <p>И если хочешь отблагодарить меня: <strong>4276 4000 6675 4566</strong></p>
         </div>
       </section>
+
+      <!-- Секция обратной связи -->
+      <section id="feedback" data-category="feedback">
+        <h2>
+          <i class="fas fa-envelope"></i> Обратная связь
+        </h2>
+        <div>
+          <p>Если у вас возникли вопросы или предложения по сайту или графическим пакетам, не стесняйтесь связаться со мной:</p>
+          <p class="center-bold">
+            <a href="https://t.me/kingOKV" target="_blank" rel="noopener noreferrer">
+              <button class="feedback-button">
+                <i class="fab fa-telegram"></i> Написать в Telegram
+              </button>
+            </a>
+          </p>
+        </div>
+      </section>
+
       <!-- Faces Section -->
       <section id="faces" data-category="faces">
         <h2>
@@ -824,7 +691,6 @@
                 <th>Размер файла</th>
                 <th>Количество изображений</th>
                 <th>Ссылка на загрузку</th>
-                <th>Оригинал поста</th>
               </tr>
             </thead>
             <tbody>
@@ -835,65 +701,35 @@
                 <td>15 Гб</td>
                 <td>485,166</td>
                 <td><a href="https://t.me/OKVFMchat/943" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td rowspan="2">
-                  <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank" rel="noopener noreferrer">
-                    <button><i class="fas fa-external-link-alt"></i> Перейти</button>
-                  </a>
-                </td>
               </tr>
-              <tr class="upd">
-                <td>
-                  <span class="upd-marker">UPD</span>
-                  Cut-Out
-                </td>
+              <tr>
+                <td>Cut-Out</td>
                 <td>2025.03</td>
                 <td>11 февраля 2025</td>
                 <td>236 Мб</td>
                 <td>8,074</td>
                 <td><a href="https://t.me/OKVFMchat/965" target="_blank" rel="noopener noreferrer">Скачать</a></td>
               </tr>
+              <tr>
+                <td>Cut-Out</td>
+                <td>2025.04</td>
+                <td>12 марта 2025</td>
+                <td>130 Мб</td>
+                <td>4,288</td>
+                <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1581" target="_blank" rel="noopener noreferrer">Скачать</a></td>
+              </tr>
             </tbody>
           </table>
 
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                Cut-Out <span>2025.02</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">7 января 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">15 Гб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">485,166</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/OKVFMchat/943" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                Cut-Out <span class="upd-marker">UPD</span> <span>2025.03</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">11 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">236 Мб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">8,074</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/OKVFMchat/965" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-          </div>
+          <p class="center-bold">
+            <i class="fas fa-info-circle"></i> Всего 490,238 лиц
+          </p>
 
-          <p class="upd-note"><i class="fas fa-info-circle"></i> Файлы UPD ставятся поверх основного пака</p>
+          <p class="center-bold">
+            <a href="https://sortitoutsi.net/graphics/style/1/cut-out-player-faces" target="_blank" rel="noopener noreferrer">
+              <button><i class="fas fa-external-link-alt"></i> Оригинал поста</button>
+            </a>
+          </p>
         </div>
       </section>
 
@@ -914,7 +750,6 @@
                 <th>Размер файла</th>
                 <th>Количество изображений</th>
                 <th>Ссылка на загрузку</th>
-                <th>Оригинал поста</th>
               </tr>
             </thead>
             <tbody>
@@ -925,17 +760,9 @@
                 <td>5 Гб</td>
                 <td>261,675</td>
                 <td><a href="https://t.me/OKVFMchat/944" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td rowspan="2">
-                  <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer">
-                    <button><i class="fas fa-external-link-alt"></i> Перейти</button>
-                  </a>
-                </td>
               </tr>
-              <tr class="upd">
-                <td>
-                  <span class="upd-marker">UPD</span>
-                  FMG Standard
-                </td>
+              <tr>
+                <td>FMG Standard</td>
                 <td>2025.05</td>
                 <td>4 марта 2025</td>
                 <td>50 Мб</td>
@@ -970,61 +797,11 @@
             </tbody>
           </table>
 
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                FMG Standard <span>2025.04</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">6 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">5 Гб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">261,675</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/OKVFMchat/943" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                FMG Standard <span class="upd-marker">UPD</span> <span>2025.05</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">4 марта 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">50 Мб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">—</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1567" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                Флаги <span>2025.01</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">5 марта 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">75 Мб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">—</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1568" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-              </div>
-            </div>
-          </div>
-
-          <p class="upd-note"><i class="fas fa-info-circle"></i> Файлы UPD ставятся поверх основного пака</p>
+          <p class="center-bold">
+            <a href="https://sortitoutsi.net/graphics/style/25/fmg-standard-logos" target="_blank" rel="noopener noreferrer">
+              <button><i class="fas fa-external-link-alt"></i> Оригинал поста</button>
+            </a>
+          </p>
         </div>
       </section>
 
@@ -1045,7 +822,6 @@
                 <th>Размер файла</th>
                 <th>Количество изображений</th>
                 <th>Ссылка на загрузку</th>
-                <th>Оригинал поста</th>
               </tr>
             </thead>
             <tbody>
@@ -1056,17 +832,9 @@
                 <td>150 Мб</td>
                 <td>2,002</td>
                 <td><a href="https://t.me/OKVFMchat/945" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td rowspan="2">
-                  <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank" rel="noopener noreferrer">
-                    <button><i class="fas fa-external-link-alt"></i> Перейти</button>
-                  </a>
-                </td>
               </tr>
-              <tr class="upd">
-                <td>
-                  <span class="upd-marker">UPD</span>
-                  sortitoutsi
-                </td>
+              <tr>
+                <td>sortitoutsi</td>
                 <td>2025.04</td>
                 <td>15 февраля 2025</td>
                 <td>7 Мб</td>
@@ -1076,45 +844,11 @@
             </tbody>
           </table>
 
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                sortitoutsi <span>2025.04</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">15 января 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">150 Мб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">2,002</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/OKVFMchat/945" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                sortitoutsi <span class="upd-marker">UPD</span> <span>2025.03</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">15 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">7 Мб</div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">88</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1030" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-          </div>
-
-          <p class="upd-note"><i class="fas fa-info-circle"></i> Файлы UPD ставятся поверх основного пака</p>
+          <p class="center-bold">
+            <a href="https://sortitoutsi.net/graphics/style/32/trophies-megapack" target="_blank" rel="noopener noreferrer">
+              <button><i class="fas fa-external-link-alt"></i> Оригинал поста</button>
+            </a>
+          </p>
         </div>
       </section>
 
@@ -1135,7 +869,6 @@
                 <th>Размер файла</th>
                 <th>Количество изображений</th>
                 <th>Ссылка на загрузку</th>
-                <th>Оригинал поста</th>
               </tr>
             </thead>
             <tbody>
@@ -1146,11 +879,6 @@
                 <td>1 Гб</td>
                 <td>—</td>
                 <td><a href="https://t.me/OKVFMchat/946" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td rowspan="4">
-                  <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer">
-                    <button><i class="fas fa-external-link-alt"></i> Перейти</button>
-                  </a>
-                </td>
               </tr>
               <tr>
                 <td>FC'12</td>
@@ -1187,84 +915,11 @@
             </tbody>
           </table>
 
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                FC'12 <span>Мегапак</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">10 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">1 Гб</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/OKVFMchat/946" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                FC'12 <span>Обновление 1</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">17 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">28 Мб</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1174" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                FC'12 <span>Обновление 2</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">23 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">21 Мб</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1396" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                FC'12 <span>Обновление 3</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">02 марта 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">180 Мб</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1487" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                FC'12 <span>Обновление 4</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">10 марта 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">40 Мб</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1564" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-          </div>
+          <p class="center-bold">
+            <a href="https://fmslovakia.com/" target="_blank" rel="noopener noreferrer">
+              <button><i class="fas fa-external-link-alt"></i> Оригинал поста</button>
+            </a>
+          </p>
 
           <p class="center-bold">
             <i class="fas fa-exclamation-triangle"></i> ФИКС цвета для ФОРМ – файл нужен для того, чтобы корректно отображались формы, работает только с новой карьерой, поместить в папку editor data.
@@ -1290,7 +945,6 @@
                 <th>Размер файла</th>
                 <th>Количество изображений</th>
                 <th>Ссылка на загрузку</th>
-                <th>Оригинал поста</th>
               </tr>
             </thead>
             <tbody>
@@ -1306,54 +960,22 @@
                   Сборные и турниры 110 Мб
                 </td>
                 <td>
-                                  Стадионы 24,074<br>
+                  Стадионы 24,074<br>
                   Города 22,234<br>
                   Фанаты 2,703<br>
                   Персонал 44,596<br>
                   Сборные и турниры 634
                 </td>
                 <td><a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank" rel="noopener noreferrer">Скачать</a></td>
-                <td>
-                  <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank" rel="noopener noreferrer">
-                    <button><i class="fas fa-external-link-alt"></i> Перейти</button>
-                  </a>
-                </td>
               </tr>
             </tbody>
           </table>
 
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                sortitoutsi <span>2025.03</span>
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">19 февраля 2025</div>
-                <div class="card-label">Размер файла:</div>
-                <div class="card-value">
-                  Стадионы 4,2 Гб<br>
-                  Города 5,2 Гб<br>
-                  Фанаты 980 Мб<br>
-                  Персонал 8 Гб<br>
-                  Сборные и турниры 110 Мб
-                </div>
-                <div class="card-label">Изображений:</div>
-                <div class="card-value">
-                  Стадионы 24,074<br>
-                  Города 22,234<br>
-                  Фанаты 2,703<br>
-                  Персонал 44,596<br>
-                  Сборные и турниры 634
-                </div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1352" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-          </div>
+          <p class="center-bold">
+            <a href="https://sortitoutsi.net/graphics/style/17/sortitoutsi-backgrounds-megapack" target="_blank" rel="noopener noreferrer">
+              <button><i class="fas fa-external-link-alt"></i> Оригинал поста</button>
+            </a>
+          </p>
         </div>
       </section>
 
@@ -1394,36 +1016,6 @@
               </tr>
             </tbody>
           </table>
-
-          <!-- Карточки для мобильных устройств -->
-          <div class="cards-container">
-            <div class="card">
-              <div class="card-title">
-                FMTU
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">01 марта 2025</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1489" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://fmtransferupdate.com/download" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-title">
-                sortitoutsi
-              </div>
-              <div class="card-content">
-                <div class="card-label">Дата выхода:</div>
-                <div class="card-value">02 марта 2025</div>
-              </div>
-              <div class="card-actions">
-                <a href="https://t.me/kitsforfmbyOKV/293?comment=1490" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Скачать</a>
-                <a href="https://sortitoutsi.net/football-manager-data-update/download" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Оригинал</a>
-              </div>
-            </div>
-          </div>
 
           <p class="center-bold">
             <i class="fas fa-info-circle"></i> Советую переходить по ссылкам на оригинал, потому-что трансферы могут обновляться чаще того, чем я выкладываю в свой канал.
@@ -1486,8 +1078,6 @@
         </div>
       </section>
     </main>
-
-    <button id="scrollTop" title="Наверх" aria-hidden="true"><i class="fas fa-arrow-up"></i></button>
   </div>
 
   <script>
@@ -1707,17 +1297,6 @@
 
         shareBtn.addEventListener('mouseout', () => {
           shareBtn.querySelector('i').classList.remove('fa-bounce');
-        });
-
-        // Обработка сворачивания формы обратной связи
-        const feedbackToggle = document.getElementById('feedbackToggle');
-        const feedbackForm = document.getElementById('feedbackForm');
-        
-        feedbackToggle.addEventListener('click', () => {
-          feedbackForm.classList.toggle('collapsed');
-          const icon = feedbackToggle.querySelector('i');
-          icon.classList.toggle('fa-chevron-right');
-          icon.classList.toggle('fa-chevron-left');
         });
       });
     })();
